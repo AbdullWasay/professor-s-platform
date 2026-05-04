@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet, redirect, Link } from "@tanstack/react-router";
+import { createFileRoute, Outlet, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { DashboardSidebar, TrialBanner } from "@/components/dashboard-sidebar";
 import { useAuth } from "@/lib/auth";
