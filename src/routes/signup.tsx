@@ -55,7 +55,7 @@ function Signup() {
   );
 }
 
-function Field({ label, value, onChange, ...rest }: any) {
+function Field({ label, value, onChange, ...rest }: { label: string; value: string; onChange: (v: string) => void; [k: string]: unknown }) {
   return (
     <div className="space-y-1.5">
       <Label>{label}</Label>
