@@ -282,8 +282,7 @@ function Landing() {
               </form>
             </div>
 
-            <FooterCol title="Product" links={[{ to: "/", l: "Home" }, { to: "/signup", l: "Start trial" }, { to: "/login", l: "Sign in" }]} />
-            <FooterCol title="Company" links={[{ to: "/about", l: "About" }, { to: "/#contact", l: "Contact" }]} />
+            <FooterCol title="Sections" links={[{ to: "/#features", l: "Features" }, { to: "/#how", l: "How it works" }, { to: "/#pricing", l: "Pricing" }, { to: "/#contact", l: "Contact" }]} />
             <FooterCol title="Legal" links={[{ to: "/terms", l: "Terms" }, { to: "/privacy", l: "Privacy" }]} />
           </div>
 
