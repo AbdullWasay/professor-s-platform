@@ -17,6 +17,8 @@ const items = [
 export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const { user, logout, trialDaysLeft, trialExpired, subscribed } = useAuth();
   const path = useRouterState({ select: (s) => s.location.pathname });
+  const navigate = useNavigate();
+  const handleLogout = () => { logout(); navigate({ to: "/" }); };
 
   return (
     <aside className="flex h-full w-full flex-col bg-sidebar text-sidebar-foreground">
