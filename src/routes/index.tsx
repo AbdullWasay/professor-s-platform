@@ -217,6 +217,19 @@ function Landing() {
   );
 }
 
+function FooterCol({ title, links }: { title: string; links: { to: string; l: string }[] }) {
+  return (
+    <div className="md:col-span-2">
+      <p className="text-sm font-semibold text-primary-foreground">{title}</p>
+      <ul className="mt-4 space-y-2 text-sm">
+        {links.map((x) => (
+          <li key={x.l}><Link to={x.to} className="text-primary-foreground/60 hover:text-primary-foreground">{x.l}</Link></li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function Feature({ icon: Icon, title, text }: { icon: any; title: string; text: string }) {
   return (
     <div className="group rounded-2xl border bg-card p-6 transition hover:-translate-y-1 hover:shadow-elegant">
