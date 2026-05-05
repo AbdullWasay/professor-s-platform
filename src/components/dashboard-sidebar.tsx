@@ -73,7 +73,7 @@ export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
             <p className="truncate text-sm font-medium">{user?.username ?? "Guest"}</p>
             <p className="truncate text-xs text-sidebar-foreground/60">{user?.email ?? ""}</p>
           </div>
-          <Button variant="ghost" size="icon" onClick={logout} className="text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground">
+          <Button variant="ghost" size="icon" onClick={handleLogout} className="text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground">
             <LogOut className="h-4 w-4" />
           </Button>
         </div>
