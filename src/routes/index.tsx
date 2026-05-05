@@ -103,56 +103,129 @@ function Landing() {
       </section>
 
       {/* HOW */}
-      <section id="how" className="bg-secondary/60 py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-center font-display text-4xl font-semibold">Get started in under a minute</h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {["Sign up free", "Join the forums", "Trade & learn"].map((s, i) => (
-              <div key={s} className="rounded-2xl border bg-card p-6 shadow-sm">
-                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-accent-grad text-sm font-semibold text-accent-foreground">{i + 1}</div>
-                <h3 className="font-display text-lg font-semibold">{s}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {i === 0 && "Email + username. 2 months on us — no card required."}
-                  {i === 1 && "Jump into the main forum and community lounge instantly."}
-                  {i === 2 && "Follow lectures, copy ideas, and ask questions any time."}
-                </p>
-              </div>
-            ))}
+      <section id="how" className="border-y bg-secondary/40 py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-medium text-accent">How it works</p>
+            <h2 className="mt-2 font-display text-4xl font-semibold sm:text-5xl">Get started in under a minute.</h2>
+            <p className="mt-3 text-muted-foreground">Three steps. No card. No setup calls. Just open the door and walk in.</p>
           </div>
+
+          <ol className="relative mt-16 grid gap-10 md:grid-cols-3">
+            <div className="absolute left-0 right-0 top-5 hidden h-px bg-gradient-to-r from-transparent via-border to-transparent md:block" />
+            {[
+              { t: "Create your account", d: "Email + username. Two months on us — no card required.", k: "01" },
+              { t: "Step inside the rooms", d: "Forum, lounge & DMs unlock the moment you sign in.", k: "02" },
+              { t: "Learn, trade, repeat", d: "Follow lectures, copy ideas, ask anything — at your pace.", k: "03" },
+            ].map((s) => (
+              <li key={s.k} className="relative">
+                <div className="relative z-10 mx-auto mb-5 flex h-10 w-10 items-center justify-center rounded-full border bg-background font-display text-sm font-semibold text-accent">
+                  {s.k}
+                </div>
+                <h3 className="text-center font-display text-lg font-semibold">{s.t}</h3>
+                <p className="mx-auto mt-2 max-w-xs text-center text-sm text-muted-foreground">{s.d}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="mx-auto max-w-4xl px-6 py-24 text-center">
-        <h2 className="font-display text-4xl font-semibold">Simple pricing</h2>
-        <p className="mt-2 text-muted-foreground">Start free. Stay if it pays for itself ten times over.</p>
-        <div className="mt-10 inline-flex flex-col items-center rounded-3xl border bg-card p-10 shadow-elegant">
-          <p className="text-sm font-medium text-accent">Membership</p>
-          <p className="mt-2 font-display text-6xl font-semibold">$30<span className="text-lg text-muted-foreground">/month</span></p>
-          <p className="mt-1 text-sm text-muted-foreground">After your 2-month free trial</p>
-          <ul className="mt-6 space-y-2 text-left text-sm">
-            {["Full access to all lectures", "Live trade ideas", "Private DMs with the Professor", "Cancel any time"].map((f) => (
-              <li key={f} className="flex items-center gap-2"><Check className="h-4 w-4 text-accent" /> {f}</li>
-            ))}
-          </ul>
-          <Button asChild size="lg" className="mt-8 w-full bg-accent-grad text-accent-foreground hover:opacity-90">
-            <Link to="/signup">Start free trial</Link>
-          </Button>
+      <section id="pricing" className="mx-auto max-w-6xl px-6 py-28">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm font-medium text-accent">Pricing</p>
+          <h2 className="mt-2 font-display text-4xl font-semibold sm:text-5xl">One plan. Everything included.</h2>
+          <p className="mt-3 text-muted-foreground">No tiers, no add-ons, no upsells. If it doesn't pay for itself, you walk.</p>
+        </div>
+
+        <div className="mx-auto mt-14 grid max-w-4xl overflow-hidden rounded-3xl border bg-card shadow-elegant md:grid-cols-5">
+          <div className="md:col-span-3 border-b p-10 md:border-b-0 md:border-r">
+            <div className="flex items-center gap-2">
+              <span className="rounded-full bg-accent/10 px-2.5 py-1 text-xs font-medium text-accent">Membership</span>
+              <span className="text-xs text-muted-foreground">Billed monthly</span>
+            </div>
+            <div className="mt-6 flex items-baseline gap-2">
+              <span className="font-display text-6xl font-semibold tracking-tight">$30</span>
+              <span className="text-muted-foreground">/ month</span>
+            </div>
+            <p className="mt-2 text-sm text-muted-foreground">After your 2-month free trial. Cancel any time, no questions.</p>
+
+            <div className="my-8 h-px bg-border" />
+
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {[
+                "All live & recorded lectures",
+                "Real-time trade ideas",
+                "Private DMs with the Professor",
+                "Community lounge & forum",
+                "Searchable archive forever",
+                "Cancel any time",
+              ].map((f) => (
+                <li key={f} className="flex items-start gap-2 text-sm">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" /> <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-col justify-between bg-secondary/40 p-10 md:col-span-2">
+            <div>
+              <p className="font-display text-xl font-semibold">Start free for 60 days.</p>
+              <p className="mt-2 text-sm text-muted-foreground">Full access from minute one. We'll remind you before the trial ends.</p>
+            </div>
+            <div className="mt-8 space-y-3">
+              <Button asChild size="lg" className="w-full bg-accent-grad text-accent-foreground hover:opacity-90">
+                <Link to="/signup">Start free trial <ArrowRight className="ml-1 h-4 w-4" /></Link>
+              </Button>
+              <p className="text-center text-xs text-muted-foreground">No credit card required</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <footer className="border-t bg-primary py-10 text-primary-foreground/70">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-sm md:flex-row">
-          <Logo className="text-primary-foreground" />
-          <div className="flex gap-6">
-            <Link to="/about" className="hover:text-primary-foreground">About</Link>
-            <Link to="/terms" className="hover:text-primary-foreground">Terms</Link>
-            <Link to="/privacy" className="hover:text-primary-foreground">Privacy</Link>
-            <Link to="/contact" className="hover:text-primary-foreground">Contact</Link>
+      {/* FOOTER */}
+      <footer className="bg-primary text-primary-foreground/70">
+        <div className="mx-auto max-w-7xl px-6 py-16">
+          <div className="grid gap-10 md:grid-cols-12">
+            <div className="md:col-span-5">
+              <Logo className="text-primary-foreground" />
+              <p className="mt-4 max-w-sm text-sm text-primary-foreground/60">
+                A focused chat community for traders who want to learn, share and grow — without the noise.
+              </p>
+              <form className="mt-6 flex max-w-sm gap-2" onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="email"
+                  placeholder="you@email.com"
+                  className="h-10 w-full rounded-md border border-white/10 bg-white/5 px-3 text-sm text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent focus:outline-none"
+                />
+                <Button type="submit" className="bg-accent-grad text-accent-foreground hover:opacity-90">Notify me</Button>
+              </form>
+            </div>
+
+            <FooterCol title="Product" links={[{ to: "/", l: "Home" }, { to: "/signup", l: "Start trial" }, { to: "/login", l: "Sign in" }]} />
+            <FooterCol title="Company" links={[{ to: "/about", l: "About" }, { to: "/contact", l: "Contact" }]} />
+            <FooterCol title="Legal" links={[{ to: "/terms", l: "Terms" }, { to: "/privacy", l: "Privacy" }]} />
           </div>
-          <p>© 2026 The Professor's</p>
+
+          <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-6 text-xs md:flex-row md:items-center">
+            <p>© 2026 The Professor's. All rights reserved.</p>
+            <p className="text-primary-foreground/50">Built for traders, by a trader.</p>
+          </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function FooterCol({ title, links }: { title: string; links: { to: string; l: string }[] }) {
+  return (
+    <div className="md:col-span-2">
+      <p className="text-sm font-semibold text-primary-foreground">{title}</p>
+      <ul className="mt-4 space-y-2 text-sm">
+        {links.map((x) => (
+          <li key={x.l}><Link to={x.to} className="text-primary-foreground/60 hover:text-primary-foreground">{x.l}</Link></li>
+        ))}
+      </ul>
     </div>
   );
 }
