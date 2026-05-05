@@ -1,19 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { Logo } from "@/components/logo";
-
-export const Route = createFileRoute("/contact")({
-  head: () => ({ meta: [{ title: "Contact — The Professor's" }] }),
-  component: () => (
-    <PublicShell title="Contact">
-      <p>Questions before joining? Reach the team:</p>
-      <ul className="mt-4 space-y-2">
-        <li><strong>Email:</strong> hello@theprofessors.demo</li>
-        <li><strong>Phone:</strong> +1 (555) 010-2026</li>
-        <li><strong>Hours:</strong> Mon–Fri · 9am–6pm</li>
-      </ul>
-    </PublicShell>
-  ),
-});
 
 export function PublicShell({ title, children }: { title: string; children: React.ReactNode }) {
   return (

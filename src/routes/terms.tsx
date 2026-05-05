@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PublicShell } from "./contact";
+import { PublicShell } from "@/components/public-shell";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({ meta: [{ title: "Terms & Conditions — The Professor's" }] }),

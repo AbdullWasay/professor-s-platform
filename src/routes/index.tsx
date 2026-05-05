@@ -1,7 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import { Logo } from "@/components/logo";
-import { MessageSquare, BookOpen, TrendingUp, Users, Check, ArrowRight, Sparkles } from "lucide-react";
+import { MessageSquare, BookOpen, TrendingUp, Users, Check, ArrowRight, Sparkles, Mail, Phone, MessageCircle } from "lucide-react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,6 +19,14 @@ export const Route = createFileRoute("/")({
 });
 
 function Landing() {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+
+  const submitContact = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Message sent! We'll reply within 24h.");
+    setForm({ name: "", email: "", phone: "", message: "" });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* NAV */}
@@ -24,7 +37,7 @@ function Landing() {
             <a href="#features" className="hover:text-primary-foreground">Features</a>
             <a href="#how" className="hover:text-primary-foreground">How it works</a>
             <a href="#pricing" className="hover:text-primary-foreground">Pricing</a>
-            <Link to="/contact" className="hover:text-primary-foreground">Contact</Link>
+            <a href="#contact" className="hover:text-primary-foreground">Contact</a>
           </nav>
           <div className="flex items-center gap-2">
             <Button asChild variant="ghost" className="text-primary-foreground hover:bg-white/10 hover:text-primary-foreground">
@@ -183,6 +196,73 @@ function Landing() {
         </div>
       </section>
 
+      {/* CONTACT */}
+      <section id="contact" className="border-t bg-secondary/30 py-24">
+        <div className="mx-auto grid max-w-6xl gap-8 px-6 lg:grid-cols-5">
+          <div className="lg:col-span-2">
+            <p className="text-sm font-medium text-accent">Contact</p>
+            <h2 className="mt-2 font-display text-4xl font-semibold">Talk to our team.</h2>
+            <p className="mt-3 text-muted-foreground">
+              Questions before joining? Send a message and we will get back within one business day.
+            </p>
+            <div className="mt-6 space-y-4">
+              <Info icon={Mail} title="Email" value="hello@theprofessors.demo" />
+              <Info icon={Phone} title="Phone" value="+1 (555) 010-2026" />
+              <Info icon={MessageCircle} title="Hours" value="Mon–Fri · 9am–6pm" />
+            </div>
+          </div>
+          <form onSubmit={submitContact} className="rounded-2xl border bg-card p-6 shadow-elegant lg:col-span-3">
+            <h3 className="font-display text-2xl font-semibold">Send us a message</h3>
+            <p className="mt-1 text-sm text-muted-foreground">We usually respond in less than 24 hours.</p>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              <div className="space-y-1.5">
+                <Label htmlFor="contact-name">Name</Label>
+                <Input
+                  id="contact-name"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="contact-email">Email</Label>
+                <Input
+                  id="contact-email"
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  required
+                />
+              </div>
+            </div>
+            <div className="mt-4 space-y-1.5">
+              <Label htmlFor="contact-phone">Phone number</Label>
+              <Input
+                id="contact-phone"
+                type="tel"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                placeholder="+1 (555) 010-2026"
+                required
+              />
+            </div>
+            <div className="mt-4 space-y-1.5">
+              <Label htmlFor="contact-message">Message</Label>
+              <Textarea
+                id="contact-message"
+                rows={6}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                required
+              />
+            </div>
+            <Button type="submit" size="lg" className="mt-6 w-full bg-accent-grad text-accent-foreground hover:opacity-90 sm:w-auto">
+              Send message <ArrowRight className="ml-1 h-4 w-4" />
+            </Button>
+          </form>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer className="bg-primary text-primary-foreground/70">
         <div className="mx-auto max-w-7xl px-6 py-16">
@@ -203,7 +283,7 @@ function Landing() {
             </div>
 
             <FooterCol title="Product" links={[{ to: "/", l: "Home" }, { to: "/signup", l: "Start trial" }, { to: "/login", l: "Sign in" }]} />
-            <FooterCol title="Company" links={[{ to: "/about", l: "About" }, { to: "/contact", l: "Contact" }]} />
+            <FooterCol title="Company" links={[{ to: "/about", l: "About" }, { to: "/#contact", l: "Contact" }]} />
             <FooterCol title="Legal" links={[{ to: "/terms", l: "Terms" }, { to: "/privacy", l: "Privacy" }]} />
           </div>
 
@@ -238,6 +318,18 @@ function Feature({ icon: Icon, title, text }: { icon: any; title: string; text: 
       </div>
       <h3 className="font-display text-lg font-semibold">{title}</h3>
       <p className="mt-1.5 text-sm text-muted-foreground">{text}</p>
+    </div>
+  );
+}
+
+function Info({ icon: Icon, title, value }: { icon: any; title: string; value: string }) {
+  return (
+    <div className="rounded-xl border bg-card p-4">
+      <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-accent/10 text-accent">
+        <Icon className="h-4 w-4" />
+      </div>
+      <p className="text-xs text-muted-foreground">{title}</p>
+      <p className="text-sm font-medium">{value}</p>
     </div>
   );
 }
