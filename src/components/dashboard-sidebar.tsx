@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
 import { Hash, Coffee, MessageCircle, CreditCard, Mail, LogOut, GraduationCap, Info } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { useAuth } from "@/lib/auth";
