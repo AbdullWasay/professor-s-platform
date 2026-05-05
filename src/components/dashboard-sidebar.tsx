@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
 import { Hash, Coffee, MessageCircle, CreditCard, Mail, LogOut, GraduationCap, Info } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { useAuth } from "@/lib/auth";
@@ -17,6 +17,8 @@ const items = [
 export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const { user, logout, trialDaysLeft, trialExpired, subscribed } = useAuth();
   const path = useRouterState({ select: (s) => s.location.pathname });
+  const navigate = useNavigate();
+  const handleLogout = () => { logout(); navigate({ to: "/" }); };
 
   return (
     <aside className="flex h-full w-full flex-col bg-sidebar text-sidebar-foreground">
@@ -71,7 +73,7 @@ export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
             <p className="truncate text-sm font-medium">{user?.username ?? "Guest"}</p>
             <p className="truncate text-xs text-sidebar-foreground/60">{user?.email ?? ""}</p>
           </div>
-          <Button variant="ghost" size="icon" onClick={logout} className="text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground">
+          <Button variant="ghost" size="icon" onClick={handleLogout} className="text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground">
             <LogOut className="h-4 w-4" />
           </Button>
         </div>
